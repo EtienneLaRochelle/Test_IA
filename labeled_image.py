@@ -2,8 +2,8 @@ import csv
 import os
 from collections.abc import Generator
 
-IMAGES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images')
-CSV_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results')
+IMAGES_DIR = os.environ["SONIA_WS"] + "/src/Test_IA/images"
+CSV_DIR = os.environ["SONIA_WS"] + "/src/Test_IA/results"
 EXTENSIONS = ['.png', '.jpg', '.jpeg']
 
 
