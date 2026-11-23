@@ -1,10 +1,15 @@
 import csv
 import os
+import yaml
+from pathlib import Path
 from collections.abc import Generator
 
-IMAGES_DIR = os.environ["SONIA_WS"] + "/src/Test_IA/images"
-CSV_DIR = os.environ["SONIA_WS"] + "/src/Test_IA/results"
-EXTENSIONS = ['.png', '.jpg', '.jpeg']
+with open(Path(__file__).parent / "config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+IMAGES_DIR = os.environ["SONIA_WS"] + "/src/Test_IA/" + config['labeled_image']['images_dir']
+CSV_DIR = os.environ["SONIA_WS"] + "/src/Test_IA/" + config['labeled_image']['csv_dir']
+EXTENSIONS = config['labeled_image']['extensions']
 
 
 class LabeledImage:

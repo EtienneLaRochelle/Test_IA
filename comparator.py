@@ -1,18 +1,15 @@
-GREEN, YELLOW, RED, RESET = "\033[32m", "\033[33m", "\033[31m", "\033[0m"
-TOLERANCE = 5 # Pixels
-FIELDS = {
-    'class_name' : 'cls',
-    'distance' : 'dist',
-    'top_left_x' : 'tl_x',
-    'top_left_y' : 'tl_y',
-    'top_right_x' : 'tr_x',
-    'top_right_y' : 'tr_y',
-    'bottom_left_x' : 'bl_x',
-    'bottom_left_y' : 'bl_y',
-    'bottom_right_x' : 'br_x',
-    'bottom_right_y' : 'br_y'
-}
+import yaml
+from pathlib import Path
 
+with open(Path(__file__).parent / "config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+GREEN = config['comparator']['color']['green']
+YELLOW = config['comparator']['color']['yellow']
+RED = config['comparator']['color']['red']
+RESET = config['comparator']['color']['reset']
+TOLERANCE = config['comparator']['tolerance']
+FIELDS = config['comparator']['fields']
 Detection = dict[str, str]
 
 

@@ -1,5 +1,7 @@
 import cv2
 import rclpy
+import yaml
+from pathlib import Path
 from time import monotonic
 from comparator import Comparator
 from labeled_image import LabeledImage
@@ -10,8 +12,11 @@ from sonia_common_ros2.msg import DetectionArray
 from cv_bridge import CvBridge
 from rosidl_runtime_py.convert import message_to_ordereddict
 
-SUBSCRIBER_TIMEOUT = 5.0
-RESPONSE_TIMEOUT = 5.0
+with open(Path(__file__).parent / "config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+SUBSCRIBER_TIMEOUT = config['detection_tester']['subscriber_timeout']
+RESPONSE_TIMEOUT = config['detection_tester']['response_timeout']
 
 
 class DetectionTester(Node):
